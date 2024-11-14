@@ -83,7 +83,7 @@ namespace WpfApp1
             }
             else
             {
-                Job newjob = new Job(JobTitlex.Text, DateOnly.FromDateTime(JobDatex.SelectedDate ?? DateTime.Now), Convert.ToDouble(JobCostx.Text), JobIdx.Text);
+                Job newjob = new Job(JobTitlex.Text, DateOnly.FromDateTime(JobDatex.SelectedDate ?? DateTime.Now), Convert.ToDouble(JobCostx.Text), JobIdx.Text, );
                 recruitsystem.AddJob(newjob);
                 
                 //To refresh the Job list in the application

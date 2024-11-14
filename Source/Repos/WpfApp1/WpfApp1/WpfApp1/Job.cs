@@ -15,18 +15,20 @@ namespace WpfApp1
         public DateOnly JobDate { get; set; }
         public double JobCost { get; set; }
         public string JobID { get; set; }
+        public bool Status { get; set; }
 
         // create a list of contractors who would be assigned to specific jobs
         public List<Contractor> AssignedContractors { get; set; } = new List<Contractor>();
 
         // This is a Job constructor
-        public Job(string jobtitle, DateOnly jobdate, double jobcost, string jobid)
+        public Job(string jobtitle, DateOnly jobdate, double jobcost, string jobid, bool status)
         {
             // It is checking the not null entry of the JobTitle and JobID
             JobTitle = jobtitle ?? throw new ArgumentNullException(nameof(jobtitle));
             JobDate = jobdate;
             JobCost = jobcost;
             JobID = jobid ?? throw new ArgumentNullException(nameof(jobid));
+            Status = status;
         }
 
         public bool AddContractor(Contractor contractor)
