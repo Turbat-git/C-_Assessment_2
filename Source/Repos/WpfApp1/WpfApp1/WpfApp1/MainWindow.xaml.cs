@@ -22,6 +22,8 @@ namespace WpfApp1
             InitializeComponent();
             GetContractors();
             GetJobs();
+            DatePickerDate.DisplayDateStart = DateTime.Today;
+            JobDatex.DisplayDateStart = DateTime.Today;
         }
 
         public void GetContractors()
@@ -44,12 +46,19 @@ namespace WpfApp1
 
         private void GetFilteredJob()
         {
-            FilterJobListx.ItemsSource = null;
-            FilterJobListx.ItemsSource = recruitsystem.filteredjobs;
+            JobListx.ItemsSource = null;
+            JobListx.ItemsSource = recruitsystem.filteredjobs;
+        }
+        private void GetCompletedJobs()
+        {
+            CompletedJobListx.ItemsSource = null;
+            CompletedJobListx.ItemsSource = recruitsystem.completedjobs;
         }
 
+        //Adding contractors to contractor list
         private void AddContractorClick(object sender, RoutedEventArgs e)
-        {
+        {   
+            //If else to check for exceptions
             if(ContractorFNamex.Text == string.Empty || ContractorLNamex.Text == string.Empty || ContractorIdx.Text == string.Empty || double.TryParse(ContractorHWagex.Text, out double result) != true) 
             { 
                 MessageBox.Show("Please enter correct values to the Textbox. (The Wage should be a number and every other textbox except Date Picker should not be empty.");
@@ -63,6 +72,7 @@ namespace WpfApp1
             }
         }
 
+        //Removing contractors from the contractor list
         private void RemoveContractorBTN_Click(object sender, RoutedEventArgs e)
         {
             Contractor selectedcontractor = ContractorListx.SelectedItem as Contractor;
@@ -73,6 +83,7 @@ namespace WpfApp1
             }
         }
 
+        //Adding jobs to joblist
         private void AddJobx_Click(object sender, RoutedEventArgs e)
         {
             // If else to give error if there is any
@@ -83,7 +94,7 @@ namespace WpfApp1
             }
             else
             {
-                Job newjob = new Job(JobTitlex.Text, DateOnly.FromDateTime(JobDatex.SelectedDate ?? DateTime.Now), Convert.ToDouble(JobCostx.Text), JobIdx.Text, );
+                Job newjob = new Job(JobTitlex.Text, DateOnly.FromDateTime(JobDatex.SelectedDate ?? DateTime.Now), Convert.ToDouble(JobCostx.Text), JobIdx.Text);
                 recruitsystem.AddJob(newjob);
                 
                 //To refresh the Job list in the application
@@ -91,6 +102,7 @@ namespace WpfApp1
             }
         }
 
+        //Removing jobs from the joblist
         private void RemoveJobx_Click(object sender, RoutedEventArgs e)
         {
             Job selectedjob = JobListx.SelectedItem as Job;
@@ -101,12 +113,13 @@ namespace WpfApp1
             }
         }
 
+        //Assigning contractors to a job
         private void AssignContractorx_Click(object sender, RoutedEventArgs e)
         {
             Contractor ct = ContractorListx.SelectedItem as Contractor;
             Job jt = JobListx.SelectedItem as Job;
 
-            if (ct != null && jt != null)
+            if (ct != null && jt != null && jt.Status != true)
             {
                 recruitsystem.AddContractorToJob(ct, jt);
                 recruitsystem.RemoveContractor(ct);
@@ -115,25 +128,32 @@ namespace WpfApp1
             }
         }
 
+        //Completing a job and removing the said job from joblist before adding it to completedjoblist
         private void CompleteJobx_Click(object sender, RoutedEventArgs e)
         {
-            Contractor selectedcontractor = AssignedListx.SelectedItem as Contractor;
             Job selectedjob = JobListx.SelectedItem as Job;
 
-            if (selectedjob != null && selectedcontractor != null)
+            if (selectedjob != null)
             {
-                //Remove the contractor from assigned list
-                selectedjob.RemoveAssignedContractor(selectedcontractor);
-
-                //Add the Contractor to the pool
-                recruitsystem.AssignToContractor    (selectedcontractor);
+                // Change the boolean value of the job to true
+                selectedjob.Status = true;
+                recruitsystem.CompleteJob(selectedjob);
 
                 //Refreshing the lists
                 GetAssignedContractors(selectedjob);
                 GetContractors();
+
+                //Removing the Job from the Joblist and adding it to CompletedJobList
+                recruitsystem.jobs.Remove(selectedjob);
+                recruitsystem.completedjobs.Add(selectedjob);
+
+                //Refreshing the lists
+                GetJobs();
+                GetCompletedJobs();
             }
         }
 
+        //Event to fill out textboxes from the selectedcontractor
         private void ContractorListx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Contractor? selectedcontractor = ContractorListx.SelectedItem as Contractor;
@@ -162,6 +182,7 @@ namespace WpfApp1
             }
         }
 
+        //Event to refresh joblist
         private void GetAllJobx_Click(object sender, RoutedEventArgs e)
         {
             GetJobs();
@@ -188,6 +209,7 @@ namespace WpfApp1
 
         }
 
+        //Event to display all assigned jobs in joblist
         private void GetAssignedJobx_Click_1(object sender, RoutedEventArgs e)
         {
             GetJobs();
@@ -207,6 +229,7 @@ namespace WpfApp1
             JobListx.ItemsSource = recruitsystem.unassignedjobs;
         }
 
+        //Event to apply the minimum and maximum cost filter to query
         private void FilterButtonx_Click(object sender, RoutedEventArgs e)
         {
             GetFilteredJob();
@@ -229,6 +252,38 @@ namespace WpfApp1
                     }
                 }
                 GetFilteredJob();
+            }
+        }
+
+        //Disallowing users from choosing past dates from DatePickerDate
+        private void DatePickerDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime selectedDate = DatePickerDate.SelectedDate ?? DateTime.Today;
+
+            if (selectedDate < DateTime.Today)
+            {
+                MessageBox.Show("Please don't choose date from the past");
+                DatePickerDate.SelectedDate = DateTime.Today;
+            }
+            else 
+            {
+                return;
+            }
+        }
+
+        //Disallowing users from choosing past dates from JobDatex
+        private void JobDatex_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime selectedDate = JobDatex.SelectedDate ?? DateTime.Today;
+
+            if (selectedDate < DateTime.Today)
+            {
+                MessageBox.Show("Please don't choose date from the past");
+                JobDatex.SelectedDate = DateTime.Today;
+            }
+            else
+            {
+                return;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,14 @@ namespace WpfApp1
 
         public List<Job> jobs { get; set; } = new List<Job>()
         {
-            new Job("Tanmay Job", new DateOnly(2024, 10, 24), 260, "J16", false),
-            new Job("Chris Job", new DateOnly(2022, 1, 24), 360, "J20", false),
-            new Job("Adrian Job", new DateOnly(2023, 5, 8), 307, "J15", false),
-            new Job("Kris Job", new DateOnly(2024, 2, 16), 306, "J18", false)
+            new Job("Tanmay Job", new DateOnly(2024, 10, 24), 260, "J16"),
+            new Job("Chris Job", new DateOnly(2022, 1, 24), 360, "J20"),
+            new Job("Adrian Job", new DateOnly(2023, 5, 8), 307, "J15"),
+            new Job("Kris Job", new DateOnly(2024, 2, 16), 306, "J18")
         };
         public List<Job> unassignedjobs { get; set; } = new List<Job>();
         public List<Job> filteredjobs { get; set; } = new List<Job>();
+        public List<Job> completedjobs { get; set; } = new List<Job>();
 
         public void AddContractor(Contractor contractor)
         {
@@ -103,6 +105,15 @@ namespace WpfApp1
         public void AssignToContractor(Contractor contractor)
         {
             contractors.Add(contractor);
+        }
+
+        public void CompleteJob(Job job)
+        {
+            for (int i = job.AssignedContractors.Count - 1; i >= 0; --i)
+            {
+                AddContractor(job.AssignedContractors[i]);
+                job.RemoveAssignedContractor(job.AssignedContractors[i]);
+            }
         }
     }
 }

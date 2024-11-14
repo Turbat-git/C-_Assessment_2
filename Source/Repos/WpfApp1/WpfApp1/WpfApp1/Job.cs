@@ -21,7 +21,7 @@ namespace WpfApp1
         public List<Contractor> AssignedContractors { get; set; } = new List<Contractor>();
 
         // This is a Job constructor
-        public Job(string jobtitle, DateOnly jobdate, double jobcost, string jobid, bool status)
+        public Job(string jobtitle, DateOnly jobdate, double jobcost, string jobid, bool status = false)
         {
             // It is checking the not null entry of the JobTitle and JobID
             JobTitle = jobtitle ?? throw new ArgumentNullException(nameof(jobtitle));
@@ -48,7 +48,6 @@ namespace WpfApp1
         {
             // return base.ToString();
             return $"[{JobID}] {JobTitle}. Cost: ${JobCost}";
-            //return $"[{JobID}] {JobTitle}";
         }
     }
 }
