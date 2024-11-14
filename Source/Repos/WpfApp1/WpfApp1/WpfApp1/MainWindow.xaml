@@ -19,10 +19,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="ContractorListx" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="6,41,10,69" SelectionChanged="ContractorListx_SelectionChanged" RenderTransformOrigin="0.5,0.5" />
-        <Label Content="Contractors" HorizontalAlignment="Left" Margin="157,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.455,0.683" Height="41"/>
+        <Label Content="Contractors" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="-0.455,0.683" Height="41"/>
 
         <ListBox x:Name="JobListx" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="8,40,10,69" SelectionChanged="JobListx_SelectionChanged" Grid.Row="2"/>
-        <Label Content="Jobs" HorizontalAlignment="Left" Margin="181,2,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label Content="Jobs" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Grid.Row="2"/>
         <TextBox x:Name = "ContractorFNamex" HorizontalAlignment="Left" Margin="15,41,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="120" Height="19" Grid.Column="2"/>
         <TextBox x:Name = "ContractorLNamex" HorizontalAlignment="Left" Margin="152,41,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="110" Height="19" Grid.Column="2"/>
         <TextBox x:Name = "ContractorHWagex" HorizontalAlignment="Left" Margin="15,77,0,0" TextWrapping="Wrap" Text="Hourly Wage" VerticalAlignment="Top" Width="120" Height="19" Grid.Column="2"/>
@@ -30,9 +30,10 @@
 
         <Button Content="Add Contractor" HorizontalAlignment="Left" Margin="15,112,0,0" VerticalAlignment="Top" Click="AddContractorClick" Width="111" Grid.Column="2"/>
         <Button x:Name="RemoveContractorBTN" Content="Remove Contractor" HorizontalAlignment="Left" Margin="152,112,0,0" VerticalAlignment="Top" Width="110" Click="RemoveContractorBTN_Click" Grid.Column="2"/>
+        <Button x:Name="AssignContractorx" Content="Assign To Job" HorizontalAlignment="Left" Margin="274,112,0,6" VerticalAlignment="Top" Width="110" Click="AssignContractorx_Click" Grid.Column="1" Height="20"/>
         <DatePicker x:Name = "DatePickerDate" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Grid.Column="2" Margin="152,77,0,0"/>
 
-        <Label Content="Done By" HorizontalAlignment="Left" Margin="166,13,0,0" VerticalAlignment="Top" Grid.Row="3"/>
+        <Label Content="Done By" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Grid.Row="3"/>
         <ListBox x:Name="AssignedListx" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,44,10,65" Grid.Row="3"/>
         <TextBox Grid.Column="2" x:Name="JobTitlex" HorizontalAlignment="Left" Margin="15,41,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Job Title" VerticalAlignment="Top" Width="120" Height="19"/>
         <TextBox Grid.Column="2" x:Name="JobCostx" HorizontalAlignment="Left" Margin="152,41,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Job Cost" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.5,0.5" Height="19"/>
@@ -40,20 +41,18 @@
         <TextBox Grid.Column="2" x:Name="JobIdx" HorizontalAlignment="Left" Margin="15,77,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Job Id" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5" Height="19"/>
         <Button Grid.Column="2" x:Name="AddJobx" Content="Add Job" HorizontalAlignment="Left" Margin="16,113,0,0" Grid.Row="2" VerticalAlignment="Top" Width="110" Click="AddJobx_Click"/>
         <Button Grid.Column="2" x:Name="RemoveJobx"  Content="Remove Job" HorizontalAlignment="Left" Margin="152,113,0,0" Grid.Row="2" VerticalAlignment="Top" Width="110" Click="RemoveJobx_Click"/>
-        <TextBox x:Name = "CAssignedIdx" HorizontalAlignment="Left" Margin="274,41,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Assign Contractor(ID)" VerticalAlignment="Top" Width="124" Grid.Column="2" Height="19"/>
 
-
-        <Button x:Name="AssignContractorx" Content="Assign To Job" HorizontalAlignment="Left" Margin="125,0,0,0" VerticalAlignment="Bottom" Width="150" Click="AssignContractorx_Click"/>
         <Button x:Name="CompleteJobx" Content="Complete Job" HorizontalAlignment="Left" Margin="125,0,0,0" VerticalAlignment="Bottom" Width="150" Click="CompleteJobx_Click" Grid.Row="3"/>
 
-        <Button x:Name="GetUnassignedJobxx" Content="Find Unassigned Job" HorizontalAlignment="Left" Margin="79,0,0,0" Grid.Row="2" VerticalAlignment="Bottom" Click="GetUnassignedJobxx_Click"/>
-        <Button x:Name="GetAllJobx" Content="Reset" HorizontalAlignment="Left" Margin="217,0,0,0" Grid.Row="2" VerticalAlignment="Bottom" Click="GetAllJobx_Click"/>
+        <Button x:Name="GetUnassignedJobxx" Content="Find Unassigned Job" HorizontalAlignment="Left" Margin="146,0,0,0" Grid.Row="2" VerticalAlignment="Bottom" Click="GetUnassignedJobxx_Click"/>
+        <Button x:Name="GetAllJobx" Content="Find All Job" HorizontalAlignment="Left" Margin="284,0,0,0" Grid.Row="2" VerticalAlignment="Bottom" Click="GetAllJobx_Click" Width="74"/>
 
         <TextBox x:Name="FilterMinx" Grid.Column="1" HorizontalAlignment="Left" Margin="27,0,0,1" Grid.Row="3" TextWrapping="Wrap" Text="Min Job Cost" VerticalAlignment="Bottom" Width="120"/>
         <TextBox x:Name="FilterMax" Grid.Column="1" HorizontalAlignment="Left" Margin="171,0,0,1" Grid.Row="3" TextWrapping="Wrap" Text="Max Job Cost" VerticalAlignment="Bottom" Width="120"/>
         <Button x:Name="FilterButtonx" Content="Search" Margin="313,0,0,1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1" Click="FilterButtonx_Click" Width="70" Height="18"/>
         <ListBox x:Name="FilterJobListx" Grid.Column="1" Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="16,44,10,65"/>
         <Label Content="Filter Job By Cost" HorizontalAlignment="Left" Margin="170,13,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="2"/>
+        <Button x:Name="GetAssignedJobx" Content="Find Assigned Job" HorizontalAlignment="Left" Margin="23,0,0,0" Grid.Row="2" VerticalAlignment="Bottom" Click="GetAssignedJobx_Click_1"/>
 
 
     </Grid>

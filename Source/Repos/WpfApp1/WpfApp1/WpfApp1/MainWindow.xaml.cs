@@ -167,6 +167,7 @@ namespace WpfApp1
             GetJobs();
         }
 
+        //Get all the unassigned jobs and displays it on JobListx
         private void GetUnassignedJobxx_Click(object sender, RoutedEventArgs e)
         {
             GetJobs();
@@ -185,6 +186,25 @@ namespace WpfApp1
             //Update Joblist to only display unassigned jobs
             JobListx.ItemsSource = recruitsystem.unassignedjobs;
 
+        }
+
+        private void GetAssignedJobx_Click_1(object sender, RoutedEventArgs e)
+        {
+            GetJobs();
+
+            //Use clear to not add previous Jobs into the Joblist
+            recruitsystem.unassignedjobs.Clear();
+
+            //Iteration to go through joblist and check for jobs with AssignedContractors
+            foreach (Job existingjob in recruitsystem.jobs)
+            {
+                if (existingjob != null && existingjob.AssignedContractors.Count != 0)
+                {
+                    recruitsystem.unassignedjobs.Add(existingjob);
+                }
+            }
+            //Update Joblist to only display unassigned jobs
+            JobListx.ItemsSource = recruitsystem.unassignedjobs;
         }
 
         private void FilterButtonx_Click(object sender, RoutedEventArgs e)
