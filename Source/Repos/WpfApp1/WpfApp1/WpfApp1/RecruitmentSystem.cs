@@ -21,10 +21,10 @@ namespace WpfApp1
 
         public List<Job> jobs { get; set; } = new List<Job>()
         {
-            new Job("Tanmay Job", new DateOnly(2024, 10, 24), 260, "J16"),
-            new Job("Chris Job", new DateOnly(2022, 1, 24), 360, "J20"),
-            new Job("Adrian Job", new DateOnly(2023, 5, 8), 307, "J15"),
-            new Job("Kris Job", new DateOnly(2024, 2, 16), 306, "J18")
+            new Job("Tafe - Electricity Job", new DateOnly(2024, 10, 24), 26000, "J16"),
+            new Job("Tafe - Roof Job", new DateOnly(2022, 1, 24), 36000, "J20"),
+            new Job("Restaurant - Tiling Job", new DateOnly(2023, 5, 8), 30700, "J15"),
+            new Job("Kris' shop - Wall Job", new DateOnly(2024, 2, 16), 30060, "J18")
         };
         public List<Job> unassignedjobs { get; set; } = new List<Job>();
         public List<Job> filteredjobs { get; set; } = new List<Job>();

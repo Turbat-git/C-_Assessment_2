@@ -39,7 +39,7 @@ namespace WpfApp1
         public override string? ToString() // ? accept empty string 
         {
             //return base.ToString();
-            return $"[{ContractorID}] {CFirstName} {CLastName}"; // This is a custom way to display 
+            return $"[{ContractorID}] [Hourly wage: ${CHourlyWage}] [Started at: {StartDate}] {CFirstName} {CLastName}"; // This is a custom way to display 
         }
     }
 }

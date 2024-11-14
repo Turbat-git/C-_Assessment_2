@@ -47,7 +47,7 @@ namespace WpfApp1
         public override string? ToString()
         {
             // return base.ToString();
-            return $"[{JobID}] {JobTitle}. Cost: ${JobCost}";
+            return $"[{JobID}] [Cost: ${JobCost}] [Started at: {JobDate}] {JobTitle}.";
         }
     }
 }
