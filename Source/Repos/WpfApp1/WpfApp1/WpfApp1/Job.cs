@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    internal class Job
+    public class Job
     {
         /// <summary>
         /// Lecture is a class which has 4 properties.

@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace WpfApp1
 {
-    internal class RecruitmentSystem
+    public class RecruitmentSystem
     {
         public List<Contractor> contractors { get; set; } = new List<Contractor>()
         {
